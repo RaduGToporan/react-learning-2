@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+ const myFirstElement =<p>Hello React !!!</p>
+ const appContainer = document.getElementById('root')
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+     <App />
+     {myFirstElement}
+     {myFirstElement}
+    <p>New Text</p> 
   </React.StrictMode>,
-  document.getElementById('root')
-);
-
-const myFirstElement =<h1>Hello React !!!</h1>
-ReactDOM.render(
-  myFirstElement, document.getElementById('root')
+  appContainer
 );
