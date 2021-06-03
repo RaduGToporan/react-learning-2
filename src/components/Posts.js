@@ -1,24 +1,28 @@
 import React, {useState, useEffect} from 'react'
 
 function Posts(){
-    const [windowWidth, setwindowWidth] = useState(window.innerWidth);
+    const [resourceType, setResourceType] = useState('posts');
 
-    const handleResize = () => {
-        setwindowWidth(window.innerWidth)
-    }
-
-    useEffect( () => {
-        window.addEventListener('resize', handleResize)
+    useEffect(() => {
+        
+        console.log('render outside useEffect');
 
         return () => {
-            window.removeEventListener('resize', handleResize)
+            console.log('return from resource change')
         }
-    }, [])
+    
+    }, [resourceType]);
 
     return (
+        <>
+        <br/>
         <div>
-        {windowWidth}
+        <button onClick={() => setResourceType('posts')}>Posts</button>
+        <button onClick={() => setResourceType('users')}>Users</button>
+        <button onClick={() => setResourceType('comments')}>Comments</button>
         </div>
+        <h1>{resourceType}</h1>
+        </>
     )
 }
 
