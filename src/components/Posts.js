@@ -4,13 +4,14 @@ function Posts(){
     const [resourceType, setResourceType] = useState('posts');
     const [messages, setMessages] = useState([]);
     const [count, setCount] = useState(0);
+    const [items, setItems] = useState([])
 
     console.log('render outside useEffect');
 
     useEffect(() => {
-        // fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
-        // .then(response => response.json())
-        // .then(json => console.log(json))
+        fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+        .then(response => response.json())
+        .then(json => setItems(json))
         setCount(count+1);
         //setMessages([...messages, 'Afisare']);
     }, [resourceType]);
@@ -44,6 +45,10 @@ function Posts(){
         <h1>{resourceType}</h1>
         {renderCounter()}
         {/* {renderMessages()} */}
+
+        {items.map(item => {
+            return <pre>{JSON.stringify(item)}</pre>
+        })}
         </>
     )
 }
